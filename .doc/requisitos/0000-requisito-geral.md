@@ -22,7 +22,6 @@ A avaliação não focará apenas no "funcionar", mas no **"como"** foi constru�
 
 #### **2. Engenharia Frontend (React)**
 * **Separação de Lógica e View:** Componentes puramente visuais separados da lógica de negócio (uso de *Custom Hooks*).
-* **Gerenciamento de Estado:** Escolha fundamentada para o estado global (Context API, Zustand, Redux) e estado de servidor (React Query ou SWR).
 * **Fidelidade ao Design (UI/UX):** Alinhamento, tipografia, estados de hover e transições suaves entre as telas.
 * **Responsividade:** Implementação de um layout que se adapta de forma inteligente (não apenas "encolher", mas reorganizar elementos).
 
@@ -42,5 +41,8 @@ A avaliação não focará apenas no "funcionar", mas no **"como"** foi constru�
 2.  **Criação:** Formulário com seleção de cores e ícones (Validação de inputs).
 3.  **Kanban:** Manipulação de tarefas (Mudar status, reatividade visual, lógica de conclusão).
 
-> **Nota:** Este desafio é desenhado para ser concluído em um intervalo de 2 a 3 dias, permitindo que o candidato demonstre profundidade técnica sem comprometer excessivamente sua rotina pode ser utilizado IA para construção
-> desde que o candidato consiga explicar todas implementações e ter conciencia de como elas foram feitas, porem ao ser feito o commit sinalizar que foi utilizado IA e qual foi utilizada.
+> **Nota:** Este desafio é desenhado para ser concluído em um intervalo de 2 a 3 dias, permitindo que o candidato demonstre profundidade técnica sem comprometer excessivamente sua rotina pode ser utilizado IA para construção desde que o candidato consiga explicar todas implementações e ter conciencia de como elas foram feitas, porem ao ser feito o commit sinalizar que foi utilizado IA e qual foi utilizada.
+
+Caso seja Optado o uso de banco de dados relacional, enviar os scripts no repositorio ou migrations para ser recriado o banco do nosso lado para validação
+
+
