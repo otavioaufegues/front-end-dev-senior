@@ -4,8 +4,6 @@ O objetivo deste teste é avaliar a capacidade de um desenvolvedor **Sênior** e
 
 ### 🛠️ Especificações Técnicas Recomendadas
 
-Para um perfil Sênior, espera-se a utilização de versões modernas e estáveis das tecnologias:
-
 * **Backend:** **PHP 8.2+** (Aproveitando *Readonly Properties*, *Enums* e *Typed Class Constants*).
 * **Frontend:** **React 18+** (Foco em *Concurrent Rendering*, *Hooks* e *Functional Components*).
 * **Persistência:** **PostgreSQL 15+** ou **MongoDB 6.0+**.
