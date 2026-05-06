@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import type { Board } from '../api/boards'
-import { listBoards } from '../api/boards'
+import type { Board } from '../services/api/boards'
+import { listBoards } from '../services/api/boards'
 
 type State =
   | { status: 'loading'; data: Board[]; error: null }
