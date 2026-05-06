@@ -22,6 +22,7 @@ php artisan key:generate --force || true
 
 echo "[entrypoint] migrating..."
 php artisan migrate --force
+php artisan db:seed --force
 
 echo "[entrypoint] starting php-fpm..."
 exec php-fpm
