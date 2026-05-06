@@ -1,0 +1,46 @@
+# Environment files
+# Versionando o env apenas para demonstração
+#.env 
+.env.*
+!.env.example
+
+# Composer / PHP
+vendor/
+auth.json
+.phpunit.result.cache
+.phpunit.cache/
+
+# Node / frontend build
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+public/build/
+public/hot
+
+# Laravel runtime files
+storage/*.key
+storage/pail/
+bootstrap/cache/*.php
+*.log
+
+# Docker runtime data
+docker/postgres/data/
+
+# IDEs and local tooling
+.idea/
+.vscode/
+.zed/
+.nova/
+.cursor/
+.codex/
+.phpactor.json
+_ide_helper.php
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
