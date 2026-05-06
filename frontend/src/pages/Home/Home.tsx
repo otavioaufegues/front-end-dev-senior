@@ -1,5 +1,5 @@
+import { useBoards } from '../../hooks/useBoards'
 import './Home.css'
-import { useBoards } from '../hooks/useBoards'
 
 export function Home() {
   const boards = useBoards()
