@@ -41,6 +41,21 @@ services:
     networks:
       - laravel
 
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/react/Dockerfile
+    container_name: react-app
+    ports:
+      - "3000:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Protege o node_modules de ser sobrescrito pelo host
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    networks:
+      - laravel
+
 networks:
   laravel:
     driver: bridge
