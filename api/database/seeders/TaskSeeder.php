@@ -24,7 +24,7 @@ class TaskSeeder extends Seeder
             return;
         }
 
-        DB::table('tasks')->insert([
+        DB::table('tasks')->upsert([
             [
                 'board_id' => $boardId,
                 'status_id' => $statusIds['todo'],
