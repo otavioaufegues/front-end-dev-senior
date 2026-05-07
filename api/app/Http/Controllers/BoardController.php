@@ -36,5 +36,13 @@ class BoardController extends Controller
 
         return response()->json(['data' => ['id' => $id]], 201);
     }
-}
 
+    public function destroy(int $boardId): JsonResponse
+    {
+        if (!$this->boards->delete($boardId)) {
+            return response()->json(['message' => 'Board not found'], 404);
+        }
+
+        return response()->json(['data' => true]);
+    }
+}

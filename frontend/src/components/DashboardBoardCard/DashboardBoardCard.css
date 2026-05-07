@@ -49,6 +49,43 @@
   .dbcMenu:hover {
     background: var(--social-bg);
   }
+
+  .dbcMenuWrap {
+    position: relative;
+  }
+
+  .dbcDropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 5;
+    width: 168px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    padding: 6px;
+  }
+
+  .dbcDropdownItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #dc2626;
+    cursor: pointer;
+    font: 13px/1.2 var(--sans);
+    font-weight: 650;
+    padding: 9px 10px;
+    text-align: left;
+  }
+
+  .dbcDropdownItem:hover {
+    background: rgba(220, 38, 38, 0.1);
+  }
   
   .dbcTitle {
     margin: 0;

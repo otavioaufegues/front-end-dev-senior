@@ -49,3 +49,11 @@ export async function patchJson<TResponse, TBody = unknown>(
   const res = await api.patch<TResponse>(url, body, config)
   return res.data
 }
+
+export async function deleteJson<TResponse>(
+  url: string,
+  config?: Parameters<typeof api.delete>[1],
+): Promise<TResponse> {
+  const res = await api.delete<TResponse>(url, config)
+  return res.data
+}

@@ -30,5 +30,6 @@ interface BoardRepository
      * @return int Newly created board id
      */
     public function create(array $data): int;
-}
 
+    public function delete(int $boardId): bool;
+}

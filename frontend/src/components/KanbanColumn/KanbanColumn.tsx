@@ -28,9 +28,6 @@ export function KanbanColumn({
           </h2>
           <span className="kanbanCount">{tasks.length}</span>
         </div>
-        <button type="button" className="kanbanColumnMenu" aria-label={`Menu ${title}`}>
-          ...
-        </button>
       </header>
 
       <div className="kanbanTasks">
