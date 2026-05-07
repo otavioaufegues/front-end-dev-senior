@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import type { Board, CreateBoardPayload } from '../services/api/boards'
-import { createBoard, listBoards } from '../services/api/boards'
+import { createBoard, deleteBoard, listBoards } from '../services/api/boards'
 
 type State =
   | { status: 'loading'; data: Board[]; error: null }
@@ -50,6 +50,27 @@ export function useBoards() {
     [loadBoards],
   )
 
+  const removeBoard = useCallback(
+    async (boardId: number) => {
+      const previousData = state.data
+
+      setState({ status: 'success', data: previousData.filter(board => board.id !== boardId), error: null })
+
+      try {
+        await deleteBoard(boardId)
+        await loadBoards({ keepData: true }).request
+      } catch (error) {
+        setState({
+          status: 'error',
+          data: previousData,
+          error: error instanceof Error ? error : new Error('Failed to delete board'),
+        })
+        throw error
+      }
+    },
+    [loadBoards, state.data],
+  )
+
   useEffect(() => {
     const loader = loadBoards()
 
@@ -58,5 +79,5 @@ export function useBoards() {
     }
   }, [loadBoards])
 
-  return { ...state, createBoard: addBoard, refetch: loadBoards }
+  return { ...state, createBoard: addBoard, deleteBoard: removeBoard, refetch: loadBoards }
 }
