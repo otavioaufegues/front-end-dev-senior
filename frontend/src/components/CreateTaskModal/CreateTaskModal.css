@@ -1,0 +1,185 @@
+.ctmBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(8, 6, 13, 0.42);
+}
+
+.ctm {
+  width: min(520px, 100%);
+  max-height: calc(100svh - 40px);
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+
+.ctmHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 22px 0;
+}
+
+.ctmTitle {
+  margin: 0;
+  color: var(--text-h);
+  font-size: 22px;
+}
+
+.ctmSubtitle {
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.ctmIconButton {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.ctmForm {
+  display: grid;
+  gap: 16px;
+  padding: 20px 22px 22px;
+}
+
+.ctmField {
+  display: grid;
+  gap: 7px;
+  color: var(--text-h);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.ctmField input,
+.ctmField textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text-h);
+  font: 15px/1.4 var(--sans);
+  padding: 10px 12px;
+}
+
+.ctmField textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.ctmField input:focus,
+.ctmField textarea:focus {
+  outline: 2px solid var(--accent-border);
+  border-color: var(--accent-border);
+}
+
+.ctmFieldset {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ctmFieldset legend {
+  padding: 0;
+  color: var(--text-h);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.ctmSegment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.ctmSegment button {
+  min-height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: 14px/1 var(--sans);
+}
+
+.ctmSegment button[aria-pressed='true'] {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font-weight: 700;
+}
+
+.ctmError,
+.ctmSubmitError {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ctmSubmitError {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.ctmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.ctmButton {
+  min-height: 40px;
+  border-radius: 10px;
+  padding: 0 14px;
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.ctmButtonGhost {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+}
+
+.ctmButtonPrimary {
+  border: 1px solid var(--accent-border);
+  background: var(--accent);
+  color: white;
+}
+
+.ctmButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+@media (max-width: 520px) {
+  .ctmActions,
+  .ctmSegment {
+    grid-template-columns: 1fr;
+  }
+
+  .ctmActions {
+    flex-direction: column-reverse;
+  }
+
+  .ctmButton {
+    width: 100%;
+  }
+}
