@@ -3,7 +3,8 @@ import { DashboardBoardCard } from '../../components/DashboardBoardCard/Dashboar
 import { CreateBoardCard } from '../../components/CreateBoardCard/CreateBoardCard'
 import { CreateBoardModal } from '../../components/CreateBoardModal/CreateBoardModal'
 import { useBoards } from '../../hooks/useBoards'
-import type { CreateBoardPayload } from '../../services/api/boards'
+import { BoardPage } from '../Board/Board'
+import type { Board, CreateBoardPayload } from '../../services/api/boards'
 import type { ApiError } from '../../services/axios/axios'
 
 import './Home.css'
@@ -18,7 +19,7 @@ function getCreateErrorMessage(error: unknown): string {
 
 export function Home() {
   const boards = useBoards()
-  const [activeId, setActiveId] = useState<number | null>(null)
+  const [selectedBoard, setSelectedBoard] = useState<Board | null>(null)
   const [isCreateOpen, setIsCreateOpen] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
   const [createError, setCreateError] = useState<string | null>(null)
@@ -41,6 +42,10 @@ export function Home() {
     if (isCreating) return
     setIsCreateOpen(false)
     setCreateError(null)
+  }
+
+  if (selectedBoard) {
+    return <BoardPage board={selectedBoard} onBack={() => setSelectedBoard(null)} />
   }
 
   return (
@@ -73,9 +78,8 @@ export function Home() {
               <button
                 type="button"
                 className="boardItem"
-                aria-current={activeId === board.id ? 'true' : undefined}
                 key={board.id}
-                onClick={() => setActiveId(board.id)}
+                onClick={() => setSelectedBoard(board)}
               >
                 <span className="boardDot" style={{ background: board.theme_color }} />
                 <div>
@@ -97,7 +101,7 @@ export function Home() {
                 key={board.id}
                 board={board}
                 onOpen={selectedBoard => {
-                  setActiveId(selectedBoard.id)
+                  setSelectedBoard(selectedBoard)
                 }}
               />
             ))}
