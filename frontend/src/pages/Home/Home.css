@@ -63,16 +63,32 @@
 }
 
 .boardItem {
+  width: 100%;
   display: flex;
   gap: 10px;
   padding: 10px 10px;
   border-radius: 12px;
   border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
 }
 
 .boardItem:hover {
   border-color: var(--border);
   background: rgba(0, 0, 0, 0.02);
+}
+
+.boardItem[aria-current='true'] {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.boardItem:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .boardDot {
