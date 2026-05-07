@@ -1,0 +1,99 @@
+.taskCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5px 1fr;
+  min-height: 132px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+
+.taskCard[data-done='true'] {
+  opacity: 0.68;
+}
+
+.taskPriority {
+  background: #2563eb;
+}
+
+.taskCard[data-priority='urgent'] .taskPriority {
+  background: #ea580c;
+}
+
+.taskCard[data-done='true'] .taskPriority {
+  background: #059669;
+}
+
+.taskBody {
+  min-width: 0;
+  padding: 12px;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.taskTitle {
+  min-width: 0;
+  margin: 0;
+  color: var(--text-h);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.taskCard[data-done='true'] .taskTitle {
+  text-decoration: line-through;
+}
+
+.taskBadge {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: rgba(234, 88, 12, 0.14);
+  color: #c2410c;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  line-height: 1;
+  padding: 5px 7px;
+  text-transform: uppercase;
+}
+
+.taskDescription {
+  display: -webkit-box;
+  margin-top: 8px;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.taskActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.taskMoveButton {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  font: 12px/1 var(--sans);
+  padding: 7px 8px;
+}
+
+.taskMoveButton:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}

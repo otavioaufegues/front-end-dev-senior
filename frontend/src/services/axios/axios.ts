@@ -41,3 +41,11 @@ export async function postJson<TResponse, TBody = unknown>(
   return res.data
 }
 
+export async function patchJson<TResponse, TBody = unknown>(
+  url: string,
+  body?: TBody,
+  config?: Parameters<typeof api.patch>[2],
+): Promise<TResponse> {
+  const res = await api.patch<TResponse>(url, body, config)
+  return res.data
+}
