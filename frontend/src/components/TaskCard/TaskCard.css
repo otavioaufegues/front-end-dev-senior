@@ -8,10 +8,21 @@
   border-radius: 12px;
   background: var(--bg);
   box-shadow: var(--shadow);
+  cursor: grab;
+  touch-action: none;
+  transition: opacity 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  user-select: none;
 }
 
 .taskCard[data-done='true'] {
   opacity: 0.68;
+}
+
+.taskCard[data-dragging='true'] {
+  border-color: var(--accent-border);
+  cursor: grabbing;
+  opacity: 0.55;
+  transform: scale(0.98);
 }
 
 .taskPriority {
@@ -76,24 +87,3 @@
   -webkit-line-clamp: 3;
 }
 
-.taskActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 12px;
-}
-
-.taskMoveButton {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: transparent;
-  color: var(--text-h);
-  cursor: pointer;
-  font: 12px/1 var(--sans);
-  padding: 7px 8px;
-}
-
-.taskMoveButton:hover {
-  border-color: var(--accent-border);
-  background: var(--accent-bg);
-}

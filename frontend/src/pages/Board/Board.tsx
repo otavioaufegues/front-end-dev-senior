@@ -1,9 +1,10 @@
+import { DragDropProvider, type DragEndEvent } from '@dnd-kit/react'
 import { useState } from 'react'
 import { CreateTaskModal } from '../../components/CreateTaskModal/CreateTaskModal'
 import { KanbanColumn } from '../../components/KanbanColumn/KanbanColumn'
 import { useKanban } from '../../hooks/useKanban'
 import type { Board } from '../../services/api/boards'
-import type { CreateTaskPayload, StatusKey, Task } from '../../services/api/tasks'
+import { statusKeys, type CreateTaskPayload, type StatusKey, type Task } from '../../services/api/tasks'
 import type { ApiError } from '../../services/axios/axios'
 import './Board.css'
 import { ArrowBigLeft } from 'lucide-react';
@@ -26,7 +27,6 @@ export function BoardPage({ board, onBack }: Props) {
   const [taskStatusToCreate, setTaskStatusToCreate] = useState<StatusKey | null>(null)
   const [isCreatingTask, setIsCreatingTask] = useState(false)
   const [taskError, setTaskError] = useState<string | null>(null)
-  const statusOptions = kanban.columns.map(column => ({ key: column.key, title: column.title }))
 
   async function handleCreateTask(payload: CreateTaskPayload) {
     setIsCreatingTask(true)
@@ -48,6 +48,17 @@ export function BoardPage({ board, onBack }: Props) {
     } catch {
       return
     }
+  }
+
+  function handleDragEnd(event: DragEndEvent) {
+    if (event.canceled) return
+
+    const task = event.operation.source?.data?.task as Task | undefined
+    const statusKey = event.operation.target?.data?.statusKey as StatusKey | undefined
+
+    if (!task || !statusKey || !statusKeys.includes(statusKey)) return
+
+    void handleMoveTask(task, statusKey)
   }
 
   function handleCloseTaskModal() {
@@ -85,19 +96,19 @@ export function BoardPage({ board, onBack }: Props) {
         </div>
       )}
 
-      <main className="kanbanBoard">
-        {kanban.columns.map(column => (
-          <KanbanColumn
-            key={column.key}
-            title={column.title}
-            statusKey={column.key}
-            tasks={column.tasks}
-            statusOptions={statusOptions}
-            onAddTask={setTaskStatusToCreate}
-            onMoveTask={handleMoveTask}
-          />
-        ))}
-      </main>
+      <DragDropProvider onDragEnd={handleDragEnd}>
+        <main className="kanbanBoard">
+          {kanban.columns.map(column => (
+            <KanbanColumn
+              key={column.key}
+              title={column.title}
+              statusKey={column.key}
+              tasks={column.tasks}
+              onAddTask={setTaskStatusToCreate}
+            />
+          ))}
+        </main>
+      </DragDropProvider>
 
       <CreateTaskModal
         open={taskStatusToCreate !== null}
