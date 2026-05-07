@@ -21,6 +21,7 @@ type ListBoardsResponse = { data: Board[] }
 
 export async function listBoards(): Promise<Board[]> {
   const payload = await getJson<ListBoardsResponse>('/boards')
+  
   return payload.data
 }
 

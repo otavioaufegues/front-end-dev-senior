@@ -1,8 +1,14 @@
 import { useBoards } from '../../hooks/useBoards'
+import { useState } from 'react'
+import { DashboardBoardCard } from '../../components/DashboardBoardCard/DashboardBoardCard'
+import { CreateBoardCard } from '../../components/CreateBoardCard/CreateBoardCard'
+
 import './Home.css'
 
 export function Home() {
   const boards = useBoards()
+  const [activeId, setActiveId] = useState<number | null>(null)
+
 
   return (
     <div className="homeShell">
@@ -44,8 +50,19 @@ export function Home() {
       </aside>
 
       <main className="content">
-        <h1 className="title">Your Dashboards</h1>
-        <p className="subtitle">Selecione um board na lateral para abrir.</p>
+        <div className="dashGrid">
+          <CreateBoardCard onClick={() => {}} />
+          {boards.status === 'success' &&
+            boards.data.map(b => (
+              <DashboardBoardCard
+                key={b.id}
+                board={b}
+                onOpen={board => {
+                  setActiveId(board.id)
+                }}
+              />
+            ))}
+        </div>
       </main>
     </div>
   )
