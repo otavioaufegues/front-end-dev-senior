@@ -11,7 +11,7 @@ class BoardSeeder extends Seeder
     {
         $now = now();
 
-        DB::table('boards')->upsert([
+        DB::table('boards')->insert([
             [
                 'name' => 'Customer Feedback',
                 'description' => 'Track user reports, feature requests and urgent issues.',

@@ -12,6 +12,7 @@ services:
       DB_DATABASE: ${DB_DATABASE}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+      FRONTEND_URL: http://localhost:3000
     working_dir: /var/www/html
     volumes:
       - ./api:/var/www/html
