@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import type { Board } from '../services/api/boards'
-import { listBoards } from '../services/api/boards'
+import { useCallback, useEffect, useState } from 'react'
+import type { Board, CreateBoardPayload } from '../services/api/boards'
+import { createBoard, listBoards } from '../services/api/boards'
 
 type State =
   | { status: 'loading'; data: Board[]; error: null }
@@ -14,10 +14,16 @@ export function useBoards() {
     error: null,
   })
 
-  useEffect(() => {
+  const loadBoards = useCallback((options?: { keepData?: boolean }) => {
     let cancelled = false
 
-    listBoards()
+    setState(current => ({
+      status: 'loading',
+      data: options?.keepData ? current.data : [],
+      error: null,
+    }))
+
+    const request = listBoards()
       .then(data => {
         if (cancelled) return
         setState({ status: 'success', data, error: null })
@@ -28,11 +34,29 @@ export function useBoards() {
         setState({ status: 'error', data: [], error })
       })
 
-    return () => {
-      cancelled = true
+    return {
+      request,
+      cancel: () => {
+        cancelled = true
+      },
     }
   }, [])
 
-  return state
-}
+  const addBoard = useCallback(
+    async (payload: CreateBoardPayload) => {
+      await createBoard(payload)
+      await loadBoards({ keepData: true }).request
+    },
+    [loadBoards],
+  )
 
+  useEffect(() => {
+    const loader = loadBoards()
+
+    return () => {
+      loader.cancel()
+    }
+  }, [loadBoards])
+
+  return { ...state, createBoard: addBoard, refetch: loadBoards }
+}
