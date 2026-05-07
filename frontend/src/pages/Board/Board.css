@@ -14,13 +14,22 @@
 }
 
 .boardBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: 0;
   background: transparent;
   color: var(--text);
   cursor: pointer;
-  font: 13px/1.2 var(--sans);
+  font: 16px/1.2 var(--sans);
   margin-bottom: 14px;
   padding: 0;
+}
+
+.boardBack svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 .boardBack:hover {

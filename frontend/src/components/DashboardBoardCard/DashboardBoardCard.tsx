@@ -1,3 +1,14 @@
+import {
+  BriefcaseBusiness,
+  KanbanSquare,
+  LayoutDashboard,
+  Megaphone,
+  MessageSquare,
+  Rocket,
+  Sparkles,
+  Target,
+  type LucideIcon,
+} from 'lucide-react'
 import type { Board } from '../../services/api/boards'
 import { formatLastActivity, truncate } from '../../utils/format'
 import './DashboardBoardCard.css'
@@ -7,15 +18,29 @@ type Props = {
   onOpen?: (board: Board) => void
 }
 
-/** TODO MVP: ícone por string vinda da API; depois você troca por lucide-react etc. */
+const boardIcons: Record<string, LucideIcon> = {
+  briefcase: BriefcaseBusiness,
+  kanban: KanbanSquare,
+  layout: LayoutDashboard,
+  megaphone: Megaphone,
+  'message-square': MessageSquare,
+  rocket: Rocket,
+  spark: Sparkles,
+  target: Target,
+}
+
 function BoardIcon({ icon, color }: { icon: string; color: string }) {
+  const Icon = boardIcons[icon] ?? LayoutDashboard
+
   return (
     <div
       className="dbcIcon"
       style={{ background: color }}
       title={icon}
       aria-hidden
-    />
+    >
+      <Icon size={19} strokeWidth={2.25} />
+    </div>
   )
 }
 
@@ -62,16 +87,12 @@ export function DashboardBoardCard({ board, onOpen }: Props) {
 
       <footer className="dbcFooter">
         <span className="dbcStat" title="Total de tarefas">
-            {board.tasks_count_total} tasks
+          {board.tasks_count_total} tasks
         </span>
         <span className="dbcStat" title="Última atividade">
-            {formatLastActivity(board.last_activity_at)}
+          {formatLastActivity(board.last_activity_at)}
         </span>
       </footer>
-
-      <div className="dbcAvatars" aria-hidden>
-        <span className="dbcAvatar">?</span>
-      </div>
     </article>
   )
 }

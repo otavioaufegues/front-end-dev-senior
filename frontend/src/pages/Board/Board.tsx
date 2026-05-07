@@ -6,6 +6,7 @@ import type { Board } from '../../services/api/boards'
 import type { CreateTaskPayload, StatusKey, Task } from '../../services/api/tasks'
 import type { ApiError } from '../../services/axios/axios'
 import './Board.css'
+import { ArrowBigLeft } from 'lucide-react';
 
 type Props = {
   board: Board
@@ -60,7 +61,7 @@ export function BoardPage({ board, onBack }: Props) {
       <header className="boardTopbar">
         <div>
           <button type="button" className="boardBack" onClick={onBack}>
-            Dashboard
+             <ArrowBigLeft />Dashboard
           </button>
           <div className="boardTitleRow">
             <span className="boardTitleIcon" style={{ background: board.theme_color }} aria-hidden />
@@ -72,7 +73,7 @@ export function BoardPage({ board, onBack }: Props) {
         </div>
 
         <button type="button" className="boardPrimaryAction" onClick={() => setTaskStatusToCreate('todo')}>
-          + Add Task
+          + Adicionar tarefa
         </button>
       </header>
 
