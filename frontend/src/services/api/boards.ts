@@ -1,4 +1,4 @@
-import { getJson, postJson } from '../axios/axios'
+import { deleteJson, getJson, postJson } from '../axios/axios'
 
 export type BoardStats = {
   todo: number
@@ -19,6 +19,7 @@ export type Board = {
 
 type ListBoardsResponse = { data: Board[] }
 type CreateBoardResponse = { data: { id: number } }
+type DeleteBoardResponse = { data: true }
 
 export type CreateBoardPayload = {
   name: string
@@ -36,4 +37,8 @@ export async function listBoards(): Promise<Board[]> {
 export async function createBoard(payload: CreateBoardPayload): Promise<number> {
   const response = await postJson<CreateBoardResponse, CreateBoardPayload>('/boards', payload)
   return response.data.id
+}
+
+export async function deleteBoard(boardId: number): Promise<void> {
+  await deleteJson<DeleteBoardResponse>(`/boards/${boardId}`)
 }

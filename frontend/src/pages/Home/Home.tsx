@@ -38,6 +38,15 @@ export function Home() {
     }
   }
 
+  async function handleDeleteBoard(board: Board) {
+    try {
+      await boards.deleteBoard(board.id)
+      if (selectedBoard?.id === board.id) setSelectedBoard(null)
+    } catch (error) {
+      window.alert(error instanceof Error ? error.message : 'Nao foi possivel apagar o board.')
+    }
+  }
+
   function handleCloseCreate() {
     if (isCreating) return
     setIsCreateOpen(false)
@@ -103,6 +112,7 @@ export function Home() {
                 onOpen={selectedBoard => {
                   setSelectedBoard(selectedBoard)
                 }}
+                onDelete={handleDeleteBoard}
               />
             ))}
         </div>
