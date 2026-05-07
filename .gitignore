@@ -1,6 +1,5 @@
 # Environment files
-# Versionando o env apenas para demonstração
-#.env 
+.env
 .env.*
 !.env.example
 

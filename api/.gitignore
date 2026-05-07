@@ -1,7 +1,6 @@
 *.log
 .DS_Store
-# Versionando o env apenas para demonstração
-#.env
+.env
 .env.backup
 .env.production
 .phpactor.json
