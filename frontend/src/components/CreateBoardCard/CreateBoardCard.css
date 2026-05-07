@@ -1,0 +1,29 @@
+.cbc {
+    min-height: 220px;
+    width: 100%;
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+    background: transparent;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    gap: 8px;
+    color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  
+  .cbc:hover {
+    border-color: var(--accent-border);
+    background: var(--accent-bg);
+  }
+  
+  .cbcPlus {
+    font-size: 28px;
+    line-height: 1;
+    color: var(--text-h);
+  }
+  
+  .cbcText {
+    font-weight: 650;
+    color: var(--text-h);
+  }

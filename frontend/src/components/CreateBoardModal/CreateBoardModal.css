@@ -1,0 +1,199 @@
+.cbmBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(8, 6, 13, 0.42);
+}
+
+.cbm {
+  width: min(560px, 100%);
+  max-height: calc(100svh - 40px);
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+
+.cbmHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 22px 0;
+}
+
+.cbmTitle {
+  margin: 0;
+  font-size: 22px;
+  color: var(--text-h);
+}
+
+.cbmSubtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.cbmIconButton {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--social-bg);
+  color: var(--text-h);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.cbmForm {
+  display: grid;
+  gap: 16px;
+  padding: 20px 22px 22px;
+}
+
+.cbmField {
+  display: grid;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text-h);
+}
+
+.cbmField input,
+.cbmField textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text-h);
+  font: 15px/1.4 var(--sans);
+  padding: 10px 12px;
+}
+
+.cbmField textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.cbmField input:focus,
+.cbmField textarea:focus {
+  outline: 2px solid var(--accent-border);
+  border-color: var(--accent-border);
+}
+
+.cbmFieldset {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.cbmFieldset legend {
+  padding: 0;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text-h);
+}
+
+.cbmSwatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cbmSwatch {
+  width: 34px;
+  height: 34px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cbmSwatch[aria-pressed='true'] {
+  border-color: var(--text-h);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.cbmIconGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 8px;
+}
+
+.cbmIconChoice {
+  min-height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: 13px/1.2 var(--sans);
+}
+
+.cbmIconChoice[aria-pressed='true'] {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font-weight: 650;
+}
+
+.cbmError,
+.cbmSubmitError {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cbmSubmitError {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.cbmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.cbmButton {
+  min-height: 40px;
+  border-radius: 10px;
+  padding: 0 14px;
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.cbmButtonGhost {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+}
+
+.cbmButtonPrimary {
+  border: 1px solid var(--accent-border);
+  background: var(--accent);
+  color: white;
+}
+
+.cbmButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+@media (max-width: 520px) {
+  .cbmActions {
+    flex-direction: column-reverse;
+  }
+
+  .cbmButton {
+    width: 100%;
+  }
+}
