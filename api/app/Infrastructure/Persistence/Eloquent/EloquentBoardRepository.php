@@ -84,5 +84,11 @@ class EloquentBoardRepository implements BoardRepository
 
         return (int) $board->id;
     }
-}
 
+    public function delete(int $boardId): bool
+    {
+        return Board::query()
+            ->whereKey($boardId)
+            ->delete() > 0;
+    }
+}
