@@ -6,6 +6,12 @@
   border: 1px solid var(--border);
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.018);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.kanbanColumn[data-drop-target='true'] {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
 }
 
 .kanbanColumnHeader {

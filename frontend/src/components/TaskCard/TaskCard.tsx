@@ -1,18 +1,35 @@
-import type { StatusKey, Task } from '../../services/api/tasks'
+import { useDraggable } from '@dnd-kit/react'
+import type { Task } from '../../services/api/tasks'
 import './TaskCard.css'
 
 type Props = {
   task: Task
-  statusOptions: Array<{ key: StatusKey; title: string }>
-  onMove: (task: Task, statusKey: StatusKey) => void
 }
 
-export function TaskCard({ task, statusOptions, onMove }: Props) {
+type TaskDragData = {
+  type: 'task'
+  task: Task
+}
+
+export function TaskCard({ task }: Props) {
+  const { ref, isDragging } = useDraggable<TaskDragData>({
+    id: `task-${task.id}`,
+    data: {
+      type: 'task',
+      task,
+    },
+  })
   const description = task.description?.trim()
   const isDone = task.status.key === 'done'
 
   return (
-    <article className="taskCard" data-priority={task.priority} data-done={isDone}>
+    <article
+      className="taskCard"
+      data-priority={task.priority}
+      data-done={isDone}
+      data-dragging={isDragging}
+      ref={ref}
+    >
       <div className="taskPriority" aria-hidden />
       <div className="taskBody">
         <div className="taskHeader">
@@ -21,21 +38,6 @@ export function TaskCard({ task, statusOptions, onMove }: Props) {
         </div>
 
         <p className="taskDescription">{description || 'Sem descricao.'}</p>
-
-        <div className="taskActions" aria-label="Mover tarefa">
-          {statusOptions
-            .filter(option => option.key !== task.status.key)
-            .map(option => (
-              <button
-                key={option.key}
-                type="button"
-                className="taskMoveButton"
-                onClick={() => onMove(task, option.key)}
-              >
-                {option.title}
-              </button>
-            ))}
-        </div>
       </div>
     </article>
   )

@@ -1,3 +1,4 @@
+import { useDroppable } from '@dnd-kit/react'
 import { TaskCard } from '../TaskCard/TaskCard'
 import type { StatusKey, Task } from '../../services/api/tasks'
 import './KanbanColumn.css'
@@ -6,21 +7,30 @@ type Props = {
   title: string
   statusKey: StatusKey
   tasks: Task[]
-  statusOptions: Array<{ key: StatusKey; title: string }>
   onAddTask: (statusKey: StatusKey) => void
-  onMoveTask: (task: Task, statusKey: StatusKey) => void
 }
 
 export function KanbanColumn({
   title,
   statusKey,
   tasks,
-  statusOptions,
   onAddTask,
-  onMoveTask,
 }: Props) {
+  const { ref, isDropTarget } = useDroppable({
+    id: statusKey,
+    data: {
+      type: 'status',
+      statusKey,
+    },
+  })
+
   return (
-    <section className="kanbanColumn" aria-labelledby={`${statusKey}-title`}>
+    <section
+      className="kanbanColumn"
+      aria-labelledby={`${statusKey}-title`}
+      data-drop-target={isDropTarget}
+      ref={ref}
+    >
       <header className="kanbanColumnHeader">
         <div className="kanbanColumnTitleWrap">
           <h2 className="kanbanColumnTitle" id={`${statusKey}-title`}>
@@ -32,7 +42,7 @@ export function KanbanColumn({
 
       <div className="kanbanTasks">
         {tasks.map(task => (
-          <TaskCard key={task.id} task={task} statusOptions={statusOptions} onMove={onMoveTask} />
+          <TaskCard key={task.id} task={task} />
         ))}
 
         {tasks.length === 0 && <div className="kanbanEmpty">Nenhuma tarefa aqui.</div>}
